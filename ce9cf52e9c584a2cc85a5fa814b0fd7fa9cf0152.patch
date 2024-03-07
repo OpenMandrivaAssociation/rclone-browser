@@ -1,0 +1,31 @@
+From ce9cf52e9c584a2cc85a5fa814b0fd7fa9cf0152 Mon Sep 17 00:00:00 2001
+From: Drew Short <warrick@sothr.com>
+Date: Thu, 9 Jul 2020 11:51:31 -0500
+Subject: [PATCH] Replaced deprecated method calls
+
+---
+ src/main_window.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/main_window.cpp b/src/main_window.cpp
+index 3bf63400..a82f347d 100644
+--- a/src/main_window.cpp
++++ b/src/main_window.cpp
+@@ -432,7 +432,7 @@ void MainWindow::rcloneGetVersion() {
+           };
+ #endif
+ 
+-          QStringList lines = version.split("\n", QString::SkipEmptyParts);
++          QStringList lines = version.split("\n", Qt::SkipEmptyParts);
+           QString rclone_info2;
+           QString rclone_info3;
+ 
+@@ -1214,7 +1214,7 @@ void MainWindow::addStream(const QString &remote, const QString &stream) {
+   ui.jobs->insertWidget(1, line);
+   ui.tabs->setTabText(1, QString("Jobs (%1)").arg(++mJobCount));
+ 
+-  player->start(stream, QProcess::ReadOnly);
++  player->start(stream, QStringList(), QProcess::ReadOnly);
+   UseRclonePassword(rclone);
+   rclone->start(GetRclone(),
+                 QStringList() << "cat" << GetRcloneConf() << remote,
